@@ -21,12 +21,16 @@ echo "Installing Claude Code auto-simplify hooks..."
 # ── 1. Copy hook scripts ─────────────────────────────────────────────────────
 
 mkdir -p "$HOOKS_DIR"
+mkdir -p "$HOME/.claude/commands"
 
 for script in record-baseline.sh record-touched.sh simplify-on-stop.sh; do
   cp "$SCRIPT_DIR/$script" "$HOOKS_DIR/$script"
   chmod +x "$HOOKS_DIR/$script"
   echo "  ✓ Installed $script"
 done
+
+cp "$SCRIPT_DIR/simplify-files.md" "$HOME/.claude/commands/simplify-files.md"
+echo "  ✓ Installed simplify-files.md"
 
 # ── 2. Merge hooks into settings.json ────────────────────────────────────────
 

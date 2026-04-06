@@ -17,6 +17,11 @@ for script in record-baseline.sh record-touched.sh simplify-on-stop.sh; do
   fi
 done
 
+if [ -f "$HOME/.claude/commands/simplify-files.md" ]; then
+  rm "$HOME/.claude/commands/simplify-files.md"
+  echo "  ✓ Removed simplify-files.md"
+fi
+
 # ── 2. Remove hooks key from settings.json ───────────────────────────────────
 
 if [ -f "$SETTINGS_FILE" ]; then
