@@ -1,17 +1,17 @@
 #!/bin/bash
 # Auto-run /simplify when this agent actually changed code files this turn.
 # Diffs only the files this session touched — safe for concurrent agents on
-# the same branch. Skips if the current turn was itself a /simplify invocation,
-# preventing infinite recursion without needing a hard round limit.
+# the same branch. Uses a flag file to detect the /simplify turn itself,
+# preventing infinite recursion without relying on prompt content.
 
 INPUT=$(cat)
 SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "default"')
 TOUCHED_FILE="/tmp/claude_touched_${SESSION_ID}"
-PROMPT_FILE="/tmp/claude_prompt_${SESSION_ID}"
+FLAG_FILE="/tmp/claude_simplify_flag_${SESSION_ID}"
 
-# If this turn was triggered by /simplify, don't recurse
-PROMPT=$(cat "$PROMPT_FILE" 2>/dev/null || echo "")
-if echo "$PROMPT" | grep -qi "simplify"; then
+# If we set the flag last turn, this is the /simplify turn — skip and clear
+if [ -f "$FLAG_FILE" ]; then
+  rm -f "$FLAG_FILE"
   exit 0
 fi
 
@@ -32,5 +32,7 @@ if [ -z "$CODE_DIFF" ]; then
   exit 0
 fi
 
+# Set flag so the next Stop (end of /simplify turn) is skipped
+touch "$FLAG_FILE"
 printf '{"decision":"block","reason":"/simplify"}'
 exit 0
