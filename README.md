@@ -35,15 +35,15 @@ Restart Claude Code after installing.
 
 ## Uninstall
 
-Remove the hook scripts:
-
 ```bash
-rm ~/.claude/hooks/record-baseline.sh \
-   ~/.claude/hooks/record-touched.sh \
-   ~/.claude/hooks/simplify-on-stop.sh
+bash <(curl -fsSL https://raw.githubusercontent.com/huihuisang/claude-simplify-hooks/main/uninstall.sh)
 ```
 
-Then remove the `hooks` key from `~/.claude/settings.json`.
+Or if you cloned the repo:
+
+```bash
+bash claude-simplify-hooks/uninstall.sh
+```
 
 ## Files
 
