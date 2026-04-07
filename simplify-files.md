@@ -9,7 +9,7 @@ Apply these refinements:
 
 1. **Preserve Functionality**: Never change what the code does — only how it does it. All original features, outputs, and behaviors must remain intact.
 
-2. **Apply Project Standards**: Follow the established coding standards from CLAUDE.md including design tokens, naming conventions, and architectural patterns specific to this project.
+2. **Apply Project Standards**: Check the project root for any instruction or guidelines files (e.g. CLAUDE.md, AGENTS.md, design.md, .cursorrules, or similar) and apply their coding standards, design tokens, naming conventions, and architectural patterns.
 
 3. **Enhance Clarity**: Simplify code structure by:
    - Reducing unnecessary complexity and nesting
@@ -33,6 +33,6 @@ Apply these refinements:
 Your process:
 1. Read each listed file
 2. Identify opportunities to improve elegance and consistency
-3. Apply project-specific best practices from CLAUDE.md
+3. Apply project-specific best practices from any instruction or guidelines files found in the project root (e.g. CLAUDE.md, AGENTS.md, design.md, .cursorrules)
 4. Ensure all functionality remains unchanged
 5. Apply improvements directly — do not summarize what you changed
